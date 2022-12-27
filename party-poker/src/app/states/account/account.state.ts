@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Action, State, StateContext } from "@ngxs/store";
-import { catchError, map } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 import { ACCOUN_STATE_DEFAULTS } from "./account-state-defaults.const";
 import { IAccountState } from "./account-state.interface";
 import { AccountActions } from "./account.actions";
@@ -22,8 +22,8 @@ export class AccountState {
     return this.service.login(action.payload).pipe(
       map((user) =>
         ctx.dispatch(new AccountActions.LoginSuccess(user)),
-        catchError(() => ctx.dispatch(new AccountActions.LoginFail()))
-      )
+      ),
+      catchError(() => ctx.dispatch(new AccountActions.LoginFail()))
     );
   }
 

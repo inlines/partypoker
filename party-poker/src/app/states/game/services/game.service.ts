@@ -23,6 +23,6 @@ export class GameService {
   }
 
   public join(tableId: string): Observable<any> {
-    return this.http.patch(this.path + '/')
+    return this.http.patch(this.path + '/join/' + tableId)
   }
 }
